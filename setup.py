@@ -18,8 +18,8 @@ setup_requirements = ['pytest-runner', ]
 test_requirements = ['pytest', ]
 
 setup(
-    author="J Eskew",
-    author_email='jeskew@edx.org',
+    author="edX",
+    author_email='oscm@edx.org',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -35,7 +35,7 @@ setup(
     description="User utilities for the Open edX platform",
     entry_points={
         'console_scripts': [
-            'user_util=user_util.cli:main',
+            'user_util=user_util.cli:retire_user',
         ],
     },
     install_requires=requirements,
@@ -48,7 +48,7 @@ setup(
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/doctoryes/user_util',
-    version='0.1.0',
+    url='https://github.com/edx/user_util',
+    version='0.1.1',
     zip_safe=False,
 )
