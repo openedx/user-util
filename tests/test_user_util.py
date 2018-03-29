@@ -3,13 +3,14 @@
 
 """Tests for `user_util` package."""
 
+import json
 import pytest
 from types import GeneratorType
 
 from click.testing import CliRunner
 
-from user_util import user_util
 from user_util import cli
+from user_util import user_util
 
 VALID_SALT_LIST_ONE_SALT = ['gsw@&2p)$^p2hdk&ou0e%c=ou80o=%!+tv7(u(ircv@+96jl6$']
 VALID_SALT_LIST_THREE_SALTS = [
@@ -35,18 +36,41 @@ INVALID_SALT_LIST = (
     [],
 )
 
+#
+# CLI tests
+#
 
-def test_command_line_interface():
-    """
-    Test the CLI.
-    """
+def test_cli_with_no_options():
     runner = CliRunner()
-    result = runner.invoke(cli.main)
-    assert result.exit_code == 0
-    assert 'user_util.cli.main' in result.output
-    help_result = runner.invoke(cli.main, ['--help'])
+    result_w_no_options = runner.invoke(cli.retire_user)
+    assert result_w_no_options.exit_code == -1
+
+
+def test_cli_help():
+    runner = CliRunner()
+    help_result = runner.invoke(cli.retire_user, ['--help'])
     assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+    assert 'Show this message and exit.' in help_result.output
+
+
+def test_cli_username():
+    runner = CliRunner()
+    cmd_result = runner.invoke(cli.retire_user, ['-u', 'learner1', '-s', '[\"salt1\",\"salt2\"]'])
+    assert cmd_result.exit_code == 0
+    assert type(json.loads(cmd_result.output)) == dict
+
+
+def test_cli_email():
+    runner = CliRunner()
+    cmd_result = runner.invoke(cli.retire_user, ['-e', 'me@you.com', '-s', '[\"salt100\",\"salt101\"]'])
+    assert cmd_result.exit_code == 0
+    assert type(json.loads(cmd_result.output)) == dict
+
+
+def test_cli_bad_salt():
+    runner = CliRunner()
+    cmd_result = runner.invoke(cli.retire_user, ['-u', 'a_learner', '-e', 'me@you.com', '-s', '[]'])
+    assert cmd_result.exit_code == -1
 
 #
 # Username retirement tests

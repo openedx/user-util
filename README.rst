@@ -26,7 +26,7 @@ User utilities for the Open edX platform
 Features
 --------
 
-* TODO
+* Generate one-way hashed usernames/email addresses for user retirement purposes.
 
 Credits
 -------

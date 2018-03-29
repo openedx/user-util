@@ -27,15 +27,13 @@ def retire_user(username, email, salt):
     """
     try:
         salt_list = json.loads(salt)
-    except TypeError, ValueError:
+    except (TypeError, ValueError):
         click.echo("Salt value \"{}\" is invalid JSON.".format(salt))
         raise
     results = {}
     for name in username:
-        # results[name] = get_retired_username(name, salt_list)
         results[name] = user_util.get_retired_username(name, salt_list)
     for email_addr in email:
-        # results[email_addr] = get_retired_email(email_addr, salt_list)
         results[email_addr] = user_util.get_retired_email(email_addr, salt_list)
 
     click.echo("{}".format(json.dumps(results)))
