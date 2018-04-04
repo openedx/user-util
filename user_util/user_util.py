@@ -18,7 +18,7 @@ def _compute_retired_hash(value_to_retire, salt):
         salt (str): Salt string used to modify the retired value before hashing.
     """
     return hashlib.sha1(
-        salt.encode() + value_to_retire.encode()
+        salt.encode() + value_to_retire.encode('utf-8')
     ).hexdigest()
 
 

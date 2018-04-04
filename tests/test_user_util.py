@@ -86,6 +86,14 @@ def test_username_to_hash(salt_list):
     assert len(retired_username.split('_')[-1]) == 40
 
 
+def test_unicode_username_to_hash():
+    username = u'ÁĹéáŕńéŕŰśéŕŃáḿéẂíthŰńíćődé'
+    retired_username = user_util.get_retired_username(username, VALID_SALT_LIST_ONE_SALT)
+    assert retired_username != username
+    # Since SHA1 is used, the hexadecimal digest length should be 40.
+    assert len(retired_username.split('_')[-1]) == 40
+
+
 @pytest.mark.parametrize('salt_list', (VALID_SALT_LIST_THREE_SALTS,))
 def test_correct_username_hash(salt_list):
     """
@@ -129,6 +137,14 @@ def test_email_to_hash(salt_list):
     assert retired_email != email
     assert retired_email.startswith('_'.join(user_util.RETIRED_EMAIL_DEFAULT_FMT.split('_')[0:2]))
     assert retired_email.endswith(user_util.RETIRED_EMAIL_DEFAULT_FMT.split('@')[-1])
+    # Since SHA1 is used, the hexadecimal digest length should be 40.
+    assert len(retired_email.split('@')[0]) == len('retired_email_') + 40
+
+
+def test_unicode_email_to_hash():
+    email = u'🅐.🅛🅔🅐🅡🅝🅔🅡r@example.com'
+    retired_email = user_util.get_retired_email(email, VALID_SALT_LIST_ONE_SALT)
+    assert retired_email != email
     # Since SHA1 is used, the hexadecimal digest length should be 40.
     assert len(retired_email.split('@')[0]) == len('retired_email_') + 40
 
