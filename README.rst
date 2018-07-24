@@ -3,11 +3,11 @@ Open edX User Utilities
 =======================
 
 
-.. image:: https://img.shields.io/pypi/v/user_util.svg
-        :target: https://pypi.python.org/pypi/user_util
+.. image:: https://img.shields.io/pypi/v/user-util.svg
+        :target: https://pypi.python.org/pypi/user-util
 
-.. image:: https://img.shields.io/travis/doctoryes/user_util.svg
-        :target: https://travis-ci.org/doctoryes/user_util
+.. image:: https://img.shields.io/travis/edx/user-util.svg
+        :target: https://travis-ci.org/edx/user-util
 
 .. image:: https://readthedocs.org/projects/user-util/badge/?version=latest
         :target: https://user-util.readthedocs.io/en/latest/?badge=latest
