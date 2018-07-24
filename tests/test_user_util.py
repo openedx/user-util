@@ -141,6 +141,19 @@ def test_email_to_hash(salt_list):
     assert len(retired_email.split('@')[0]) == len('retired_email_') + 40
 
 
+@pytest.mark.parametrize('salt_list', VALID_SALT_LISTS)
+def test_email_to_hash_is_normalized(salt_list):
+    """
+    Make sure identical emails with different cases map to the same retired email.
+    """
+    email_mixed = 'A.Learner@example.com'
+    email_lower = email_mixed.lower()
+    retired_email_mixed = user_util.get_retired_email(email_mixed, salt_list)
+    retired_email_lower = user_util.get_retired_email(email_lower, salt_list)
+    # No matter the case of the input email, the retired email hash should be identical.
+    assert retired_email_mixed == retired_email_lower
+
+
 def test_unicode_email_to_hash():
     email = u'🅐.🅛🅔🅐🅡🅝🅔🅡r@example.com'
     retired_email = user_util.get_retired_email(email, VALID_SALT_LIST_ONE_SALT)

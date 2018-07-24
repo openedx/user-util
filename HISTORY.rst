@@ -2,6 +2,11 @@
 History
 =======
 
+0.1.4 (2018-07-23)
+------------------
+
+* normalize email address before hashing (PLAT-2254)
+
 0.1.1 (2018-03-29)
 ------------------
 
