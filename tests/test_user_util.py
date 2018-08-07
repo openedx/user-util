@@ -86,6 +86,19 @@ def test_username_to_hash(salt_list):
     assert len(retired_username.split('_')[-1]) == 40
 
 
+@pytest.mark.parametrize('salt_list', VALID_SALT_LISTS)
+def test_username_to_hash_is_normalized(salt_list):
+    """
+    Make sure identical usernames with different cases map to the same retired username.
+    """
+    username_mixed = 'ALearnerUserName'
+    username_lower = username_mixed.lower()
+    retired_username_mixed = user_util.get_retired_username(username_mixed, salt_list)
+    retired_username_lower = user_util.get_retired_username(username_lower, salt_list)
+    # No matter the case of the input username, the retired username hash should be identical.
+    assert retired_username_mixed == retired_username_lower
+
+
 def test_unicode_username_to_hash():
     username = u'ÁĹéáŕńéŕŰśéŕŃáḿéẂíthŰńíćődé'
     retired_username = user_util.get_retired_username(username, VALID_SALT_LIST_ONE_SALT)
@@ -102,7 +115,7 @@ def test_correct_username_hash(salt_list):
     username = 'ALearnerUserName'
     # Valid retired usernames for the above username when using VALID_SALT_LIST_THREE_SALTS.
     valid_retired_usernames = [
-        user_util.RETIRED_USERNAME_DEFAULT_FMT.format(user_util._compute_retired_hash(username, salt))
+        user_util.RETIRED_USERNAME_DEFAULT_FMT.format(user_util._compute_retired_hash(username.lower(), salt))
         for salt in salt_list
     ]
     retired_username = user_util.get_retired_username(username, salt_list)
@@ -170,7 +183,7 @@ def test_correct_email_hash(salt_list):
     email = 'a.learner@example.com'
     # Valid retired emails for the above email address when using VALID_SALT_LIST_THREE_SALTS.
     valid_retired_emails = [
-        user_util.RETIRED_EMAIL_DEFAULT_FMT.format(user_util._compute_retired_hash(email, salt))
+        user_util.RETIRED_EMAIL_DEFAULT_FMT.format(user_util._compute_retired_hash(email.lower(), salt))
         for salt in salt_list
     ]
     retired_email = user_util.get_retired_email(email, salt_list)
