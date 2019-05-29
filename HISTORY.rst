@@ -2,6 +2,11 @@
 History
 =======
 
+0.2 (2020-05-02)
+------------------
+
+* Drop support to python 2.7 and add support to python 3.8
+
 0.1.5 (2018-08-08)
 ------------------
 

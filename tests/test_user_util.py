@@ -43,7 +43,7 @@ INVALID_SALT_LIST = (
 def test_cli_with_no_options():
     runner = CliRunner()
     result_w_no_options = runner.invoke(cli.retire_user)
-    assert result_w_no_options.exit_code == -1
+    assert result_w_no_options.exit_code != 0
 
 
 def test_cli_help():
@@ -70,7 +70,7 @@ def test_cli_email():
 def test_cli_bad_salt():
     runner = CliRunner()
     cmd_result = runner.invoke(cli.retire_user, ['-u', 'a_learner', '-e', 'me@you.com', '-s', '[]'])
-    assert cmd_result.exit_code == -1
+    assert cmd_result.exit_code != 0
 
 #
 # Username retirement tests

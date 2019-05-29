@@ -1,0 +1,5 @@
+# Dependencies for building documentation
+
+-r base.in                          # Core dependencies
+
+Sphinx
