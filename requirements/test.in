@@ -1,0 +1,14 @@
+# Requirements for test runs
+-c constraints.txt
+
+-r base.txt               # Core dependencies for the cookiecutter
+
+bumpversion
+wheel
+watchdog
+flake8
+coverage
+twine
+
+pytest
+pytest-runner
