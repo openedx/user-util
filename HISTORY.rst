@@ -2,6 +2,18 @@
 History
 =======
 
+0.3.1 (2020-09-16)
+------------------
+
+* Fix versioning mistake
+
+
+0.3 (2020-09-16)
+------------------
+
+* Implement retire_external_key functionality to retire external_user_keys for program enrollments
+
+
 0.2 (2020-05-02)
 ------------------
 
