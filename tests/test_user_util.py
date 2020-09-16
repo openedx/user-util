@@ -178,7 +178,7 @@ def test_unicode_email_to_hash():
 @pytest.mark.parametrize('salt_list', (VALID_SALT_LIST_THREE_SALTS,))
 def test_correct_email_hash(salt_list):
     """
-    Verify that get_retired_username uses the current salt and returns the expected hash.
+    Verify that get_retired_email uses the current salt and returns the expected hash.
     """
     email = 'a.learner@example.com'
     # Valid retired emails for the above email address when using VALID_SALT_LIST_THREE_SALTS.
@@ -202,10 +202,10 @@ def test_all_emails_to_hash(salt_list):
 def test_email_to_hash_with_different_format(salt_list):
     email = 'a.learner@example.com'
     retired_email_fmt = "{}_is_now_the_retired_email@devnull.example.com"
-    retired_username = user_util.get_retired_email(email, salt_list, retired_email_fmt=retired_email_fmt)
-    assert retired_username.endswith('_'.join(retired_email_fmt.split('_')[1:]))
+    retired_email = user_util.get_retired_email(email, salt_list, retired_email_fmt=retired_email_fmt)
+    assert retired_email.endswith('_'.join(retired_email_fmt.split('_')[1:]))
     # Since SHA1 is used, the hexadecimal digest length should be 40.
-    assert len(retired_username.split('_')[0]) == 40
+    assert len(retired_email.split('_')[0]) == 40
 
 #
 # Bad salt tests.
@@ -217,4 +217,66 @@ def test_username_to_hash_bad_salt(salt):
     Salts that are *not* lists/tuples should fail.
     """
     with pytest.raises((ValueError, IndexError)):
-        retired_username = user_util.get_retired_username('AnotherLearnerUserName', salt)
+        _ = user_util.get_retired_username('AnotherLearnerUserName', salt)
+
+
+#
+# External user retirement tests
+#
+
+@pytest.mark.parametrize('salt_list', VALID_SALT_LISTS)
+def test_external_key_to_hash(salt_list):
+    external_key = '343ni3hr3ifh3fgghg'
+    retired_external_key = user_util.get_retired_external_key(external_key, salt_list)
+    assert retired_external_key != external_key
+    assert retired_external_key.startswith(
+        '_'.join(user_util.RETIRED_EXTERNAL_KEY_DEFAULT_FMT.split('_')[0:3])
+    )
+    # Since SHA1 is used, the hexadecimal digest length should be 40.
+    assert len(retired_external_key) == len('retired_external_key_') + 40
+
+
+def test_unicode_external_key_to_hash():
+    unicode_external_key = u'🅐.🅛🅔🅐🅡🅝🅔🅡'
+    retired_external_key= user_util.get_retired_external_key(unicode_external_key, VALID_SALT_LIST_ONE_SALT)
+    assert retired_external_key != unicode_external_key
+    # Since SHA1 is used, the hexadecimal digest length should be 40.
+    assert len(retired_external_key) == len('retired_external_key_') + 40
+
+
+@pytest.mark.parametrize('salt_list', (VALID_SALT_LIST_THREE_SALTS,))
+def test_correct_external_key_hash(salt_list):
+    """
+    Verify that get_retired_external_key uses the current salt and returns the expected hash.
+    """
+    external_key = 'S34839GEF3'
+    valid_retired_external_keys = [
+        user_util.RETIRED_EXTERNAL_KEY_DEFAULT_FMT.format(
+            user_util._compute_retired_hash(external_key.lower(), salt)
+        )
+        for salt in salt_list
+    ]
+    retired_email = user_util.get_retired_external_key(external_key, salt_list)
+    assert retired_email == valid_retired_external_keys[-1]
+
+
+@pytest.mark.parametrize('salt_list', (VALID_SALT_LIST_FIVE_SALTS,))
+def test_all_external_keys_to_hash(salt_list):
+    external_key = 'S34839GEF3'
+    retired_external_key_generator = user_util.get_all_retired_external_keys(external_key, salt_list)
+    assert isinstance(retired_external_key_generator, GeneratorType)
+    assert len(list(retired_external_key_generator)) == len(VALID_SALT_LIST_FIVE_SALTS)
+
+
+@pytest.mark.parametrize('salt_list', VALID_SALT_LISTS)
+def test_external_key_to_hash_with_different_format(salt_list):
+    external_key = 'S34839GEF3'
+    retired_external_key_fmt = "{}_is_now_the_retired_external_key"
+    retired_external_key = user_util.get_retired_external_key(
+        external_key,
+        salt_list,
+        retired_external_key_fmt=retired_external_key_fmt
+    )
+    assert retired_external_key.endswith('_is_now_the_retired_external_key')
+    # Since SHA1 is used, the hexadecimal digest length should be 40.
+    assert len(retired_external_key.split('_')[0]) == 40
