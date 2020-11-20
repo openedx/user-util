@@ -7,7 +7,7 @@ Open edX User Utilities
         :target: https://pypi.python.org/pypi/user-util
 
 .. image:: https://img.shields.io/travis/edx/user-util.svg
-        :target: https://travis-ci.org/edx/user-util
+        :target: https://travis-ci.com/edx/user-util
 
 .. image:: https://readthedocs.org/projects/user-util/badge/?version=latest
         :target: https://user-util.readthedocs.io/en/latest/?badge=latest
