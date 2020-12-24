@@ -1,13 +1,12 @@
 language: python
 python:
-  - 3.5
-  - 3.8
+  - '3.8'
 install:
-- pip install -r requirements/travis.txt
+  - pip install -r requirements/travis.txt
 script:
-- tox
+  - tox
 after_success:
-- codecov
+  - codecov
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
@@ -16,4 +15,4 @@ deploy:
     secure: jIYzuroblLNT6jdpfhL4+U01fKGTzuXmO68aNuCH+0+Ijyma/wndnk7k1vcD/5CpPua7xw2c5irRhqEVIIKthkot48Jfk25vKPp9Mn89GYGH2lfJnrGTxUnILRU0XgFPSNpNBGQ3EnuH7PfAzjxMTiwxOk+snaAVcz2nyxP3/rHR6wOx7bNqZh79ImzD4UT5TefeZzPdB92MFj1nXGR22F7qoYfKJJsa/2RjqY6XdL+mMrK4u4ZopeBm89SAB8PTDAd+BF52dp0ZufoNwOQGcfkXHPeEV0JWlSvBB/aiB4NijmGmTVniGxWwV4i5HC44O7jhYTvAtrMJE5jjdJYUzOUpwJ4+OXvuaALJGMLc1uMXNvs+4cDZXF2iTg2Cf73cm5zvDMVJn0J7BwUPxOmonMBidpTZaiC2pEokyXXEU+99fL/IvKPtB3FJZIWpOGngWMfPOBRHwxOdwjOrEawUQ8VYIFYFRtEK541q60JDJs7Qfle69b5UpzgtxDDbLVTKNedia9uQ0yxC1VKMQslEmQrp7chG0cLw1sxM45D63P9BePItosnT0dMxY2n3DGo7z68Y4T8gpt+8ZFzfxtwgD4AUyENjwkdr3g791tsE70HJAi7GyexwX2EtMAkxhc6QBtLZq0LVnTG7E110Pcsf8zvI+qaSzZOjamFL261Tvfs=
   on:
     tags: true
-    python: 3.5
+    python: 3.8

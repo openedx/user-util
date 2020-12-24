@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """Tests for `user_util` package."""
 
@@ -100,7 +99,7 @@ def test_username_to_hash_is_normalized(salt_list):
 
 
 def test_unicode_username_to_hash():
-    username = u'ÁĹéáŕńéŕŰśéŕŃáḿéẂíthŰńíćődé'
+    username = 'ÁĹéáŕńéŕŰśéŕŃáḿéẂíthŰńíćődé'
     retired_username = user_util.get_retired_username(username, VALID_SALT_LIST_ONE_SALT)
     assert retired_username != username
     # Since SHA1 is used, the hexadecimal digest length should be 40.
@@ -168,7 +167,7 @@ def test_email_to_hash_is_normalized(salt_list):
 
 
 def test_unicode_email_to_hash():
-    email = u'🅐.🅛🅔🅐🅡🅝🅔🅡r@example.com'
+    email = '🅐.🅛🅔🅐🅡🅝🅔🅡r@example.com'
     retired_email = user_util.get_retired_email(email, VALID_SALT_LIST_ONE_SALT)
     assert retired_email != email
     # Since SHA1 is used, the hexadecimal digest length should be 40.
@@ -237,7 +236,7 @@ def test_external_key_to_hash(salt_list):
 
 
 def test_unicode_external_key_to_hash():
-    unicode_external_key = u'🅐.🅛🅔🅐🅡🅝🅔🅡'
+    unicode_external_key = '🅐.🅛🅔🅐🅡🅝🅔🅡'
     retired_external_key= user_util.get_retired_external_key(unicode_external_key, VALID_SALT_LIST_ONE_SALT)
     assert retired_external_key != unicode_external_key
     # Since SHA1 is used, the hexadecimal digest length should be 40.
