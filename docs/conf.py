@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 #
 # user_util documentation build configuration file, created by
 # sphinx-quickstart on Fri Jun  9 13:47:02 2017.
@@ -47,9 +46,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Open edX User Utilities'
-copyright = u"2018, J Eskew"
-author = u"J Eskew"
+project = 'Open edX User Utilities'
+copyright = "2018, J Eskew"
+author = "J Eskew"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -129,8 +128,8 @@ latex_elements = {
 # [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'user_util.tex',
-     u'Open edX User Utilities Documentation',
-     u'J Eskew', 'manual'),
+     'Open edX User Utilities Documentation',
+     'J Eskew', 'manual'),
 ]
 
 
@@ -140,7 +139,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     (master_doc, 'user_util',
-     u'Open edX User Utilities Documentation',
+     'Open edX User Utilities Documentation',
      [author], 1)
 ]
 
@@ -152,7 +151,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'user_util',
-     u'Open edX User Utilities Documentation',
+     'Open edX User Utilities Documentation',
      author,
      'user_util',
      'One line description of project.',

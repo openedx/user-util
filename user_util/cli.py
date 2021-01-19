@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Console script for user_util."""
 import json
 import sys
@@ -28,7 +26,7 @@ def retire_user(username, email, salt):
     try:
         salt_list = json.loads(salt)
     except (TypeError, ValueError):
-        click.echo("Salt value \"{}\" is invalid JSON.".format(salt))
+        click.echo(f"Salt value \"{salt}\" is invalid JSON.")
         raise
     results = {}
     for name in username:
