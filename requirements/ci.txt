@@ -13,6 +13,5 @@ py==1.10.0                # via -r requirements/tox.txt, tox
 pyparsing==2.4.7          # via -r requirements/tox.txt, packaging
 six==1.15.0               # via -r requirements/tox.txt, tox, virtualenv
 toml==0.10.2              # via -r requirements/tox.txt, tox
-tox-travis==0.12          # via -r requirements/travis.in
-tox==3.21.2               # via -r requirements/tox.txt, tox-travis
+tox==3.21.2               # via -r requirements/tox.txt
 virtualenv==20.4.0        # via -r requirements/tox.txt, tox
