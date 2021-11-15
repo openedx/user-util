@@ -2,6 +2,9 @@
 
 """The setup script."""
 
+import os
+import re
+
 from setuptools import setup, find_packages
 
 with open('README.rst') as readme_file:
@@ -38,6 +41,24 @@ def is_requirement(line):
     """
     return line and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
+
+def get_version(*file_paths):
+    """
+    Extract the version string from the file at the given relative path fragments.
+    """
+    filename = os.path.join(os.path.dirname(__file__), *file_paths)
+    with open(filename, encoding='utf-8') as opened_file:
+        version_file = opened_file.read()
+        version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
+                                  version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError('Unable to find version string.')
+
+
+VERSION = get_version("user_util", "__init__.py")
+
+
 setup(
     author="edX",
     author_email='oscm@edx.org',
@@ -66,6 +87,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/edx/user-util',
-    version='1.0.0',
+    version=VERSION,
     zip_safe=False,
 )
