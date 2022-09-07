@@ -6,8 +6,8 @@ Open edX User Utilities
 .. image:: https://img.shields.io/pypi/v/user-util.svg
         :target: https://pypi.python.org/pypi/user-util
 
-.. image:: https://github.com/edx/user-util/workflows/Python%20CI/badge.svg?branch=master
-        :target: https://github.com/edx/user-util/actions?query=workflow%3A%22Python+CI%22
+.. image:: https://github.com/openedx/user-util/workflows/Python%20CI/badge.svg?branch=master
+        :target: https://github.com/openedx/user-util/actions?query=workflow%3A%22Python+CI%22
 
 .. image:: https://readthedocs.org/projects/user-util/badge/?version=latest
         :target: https://user-util.readthedocs.io/en/latest/?badge=latest

@@ -86,7 +86,7 @@ setup(
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/edx/user-util',
+    url='https://github.com/openedx/user-util',
     version=VERSION,
     zip_safe=False,
 )
