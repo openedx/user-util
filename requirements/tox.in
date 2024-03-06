@@ -1,4 +1,4 @@
 # Used for tests
 -c constraints.txt
-
+setuptools
 tox
