@@ -10,12 +10,12 @@ bump2version==1.0.1
     # via bumpversion
 bumpversion==0.6.0
     # via -r requirements/test.in
-certifi==2025.1.31
+certifi==2025.4.26
     # via requests
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via requests
 click==8.1.8
-    # via -r /Users/tayyab.tahir/Documents/Axim/openedx_repos/user-util/requirements/base.txt
+    # via -r requirements/base.txt
 coverage==7.8.0
     # via -r requirements/test.in
 docutils==0.21.2
@@ -26,7 +26,7 @@ id==1.5.0
     # via twine
 idna==3.10
     # via requests
-importlib-metadata==8.6.1
+importlib-metadata==8.7.0
     # via keyring
 iniconfig==2.1.0
     # via pytest

@@ -8,12 +8,12 @@ alabaster==1.0.0
     # via sphinx
 babel==2.17.0
     # via sphinx
-certifi==2025.1.31
+certifi==2025.4.26
     # via requests
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via requests
 click==8.1.8
-    # via -r /Users/tayyab.tahir/Documents/Axim/openedx_repos/user-util/requirements/base.in
+    # via -r requirements/base.in
 docutils==0.21.2
     # via sphinx
 idna==3.10
