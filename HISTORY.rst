@@ -2,6 +2,12 @@
 History
 =======
 
+2.0.0 (2025-04-29)
+------------------
+
+* Drop support for Python 3.8 and add support for Python 3.12.
+
+
 1.1.0 (2024-04-05)
 ------------------
 
