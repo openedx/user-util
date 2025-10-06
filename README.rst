@@ -1,3 +1,8 @@
+🛑🛑🛑 This repository is no longer maintained.  🛑🛑🛑
+
+A version of this code now lives in the edx-platform repository.  See https://github.com/openedx/edx-platform/issues/37430 for details.
+
+
 =======================
 Open edX User Utilities
 =======================
